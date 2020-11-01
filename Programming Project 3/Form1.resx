@@ -120,4 +120,14 @@
   <metadata name="openFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>60, 9</value>
   </metadata>
+  <data name="descriptionLabel.Text" xml:space="preserve">
+    <value>This program opens a text document file. It will then convert the 
+contents to lower case and display it. The first and last words 
+alphabetically are displayed. The longest word is displayed and 
+the word with the most vowels is displayed. These statistics are
+then written to a new text document on the users desktop.</value>
+  </data>
+  <metadata name="saveFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>158, 9</value>
+  </metadata>
 </root>

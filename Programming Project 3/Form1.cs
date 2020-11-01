@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace Programming_Project_3
 {
-    public partial class Form1 : Form
+    public partial class instructionLabel : Form
     {
-        public Form1()
+        public instructionLabel()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             StreamReader fileSelected;
             openFile.ShowDialog();
             string lower;
@@ -27,8 +28,8 @@ namespace Programming_Project_3
             string last;
             string longest = "";
             int maxLength;
-            string mostVowels;
-            int vowels = 0;
+            string mostVowels = "";
+            int vowels;
             int maxVowels = 0;
 
             if (openFile.ShowDialog() == DialogResult.OK)
@@ -49,8 +50,11 @@ namespace Programming_Project_3
                         currentStringLength = s.Length;
                     }
 
+                    vowels = 0;
+
                     for (int i = 0; i < s.Length; i++)
                     {
+                        
                         if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u')
                         {
                             vowels++;
@@ -69,17 +73,44 @@ namespace Programming_Project_3
 
                 maxLength = currentStringLength;
 
-                displayText.Text = lower + "\n" + first + " " + last + "\n" + longest;
-
+                displayText.Text = "The contenst of the file in lower case reads:\n" + lower + "\n\n"+ "The first and last words, alphabetically:\n"  +"First: " + first +
+                    " / Last: " + last + "\n\n" +"This is the longest word in the file:\n" + longest + ": The number of letters: " + currentStringLength + "\n\n" + 
+                    "The word with the most vowels is:\n" + mostVowels;
+               
             } else
             {
-                MessageBox.Show("NOPE");
+                MessageBox.Show("No file selected.");
             }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            StreamWriter outputToFile;
+            saveFile.ShowDialog();
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    outputToFile = File.CreateText(saveFile.FileName);
+                    outputToFile.WriteLine(displayText.Text);
+                    outputToFile.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            } else
+            {
+                MessageBox.Show("Saving has been canceled.");
+            }
+
+            
         }
     }
 }
